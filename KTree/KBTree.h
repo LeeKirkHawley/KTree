@@ -1,85 +1,37 @@
 #pragma once
 
+#include "KBTreeNode.h"
 #include <string>
 
 using namespace std;
 
-class KBTreeNode
+
+template<class T> class KBTree
 {
 private:
+	KBTreeNode<int> * _head;
 
 public:
-	int _value;
-	KBTreeNode * _leftChild;
-	KBTreeNode* _rightChild;
-
-	KBTreeNode(int value)
+	KBTree<T>()
 	{
-		_value = value;
-		_leftChild = NULL;
-		_rightChild = NULL;
-	}
-
-	void Add(int Value)
+		_head = NULL;
+	};
+	~KBTree<T>()
 	{
-		if (Value == _value)
-			return;
+		_head->Remove();
+	};
 
-		if (Value < _value)
+	void Add(int value)
+	{
+		if (_head == NULL)
 		{
-			if (_leftChild == NULL)
-			{
-				_leftChild = new KBTreeNode(Value);
-				return;
-			}
-			else
-			{
-				_leftChild->Add(Value);
-				return;
-			}
+			KBTreeNode<T>* newNode = new KBTreeNode<T>(value);
+			_head = newNode;
 		}
-		else if (Value > _value)
+		else
 		{
-			if (_rightChild == NULL)
-			{
-				_rightChild = new KBTreeNode(Value);
-				return;
-			}
-			else
-			{
-				_rightChild->Add(Value);
-				return;
-			}
+			_head->Add(value);
 		}
 	}
-
-	void Remove()
-	{
-		if (_leftChild != NULL)
-		{
-			_leftChild->Remove();
-			_leftChild = NULL;
-		}
-
-		if (_rightChild != NULL)
-		{
-			_rightChild->Remove();
-			_rightChild = NULL;
-		}
-	
-		delete this;
-	}
-};
-
-class KBTree
-{
-private:
-	KBTreeNode * _head;
-
-public:
-	KBTree();
-	virtual ~KBTree();
-
-	void Add(int value);
 };
 

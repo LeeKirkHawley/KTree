@@ -24,15 +24,18 @@
     <ClInclude Include="KBTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="KBTreeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KTree.cpp">
+    <ClCompile Include="KBTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KBTree.cpp">
+    <ClCompile Include="KTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
