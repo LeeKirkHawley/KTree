@@ -32,9 +32,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KBTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="KTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

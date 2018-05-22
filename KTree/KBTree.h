@@ -2,6 +2,8 @@
 
 #include "KBTreeNode.h"
 #include <string>
+#include <list>
+#include <memory>
 
 using namespace std;
 
@@ -9,24 +11,23 @@ using namespace std;
 template<class T> class KBTree
 {
 private:
-	KBTreeNode<int> * _head;
 
 public:
+	unique_ptr<KBTreeNode<T>> _head;
+
 	KBTree<T>()
 	{
 		_head = NULL;
 	};
 	~KBTree<T>()
 	{
-		_head->Remove();
 	};
 
-	void Add(int value)
+	void Add(T value)
 	{
 		if (_head == NULL)
 		{
-			KBTreeNode<T>* newNode = new KBTreeNode<T>(value);
-			_head = newNode;
+			_head = make_unique<KBTreeNode<T>>(value);
 		}
 		else
 		{

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 using namespace std;
 
@@ -10,15 +11,20 @@ private:
 
 public:
 	T _value;
-	KBTreeNode<T> * _leftChild;
-	KBTreeNode<T>* _rightChild;
+	unique_ptr<KBTreeNode<T>> _leftChild;
+	unique_ptr<KBTreeNode<T>> _rightChild;
 
-	KBTreeNode<T>(int value)
+	KBTreeNode<T>(T value)
 	{
 		_value = value;
 		_leftChild = NULL;
 		_rightChild = NULL;
 	};
+
+	~KBTreeNode<T>()
+	{
+		cout << "\nDeleting " << _value;
+	}
 
 	void Add(T Value)
 	{
@@ -29,7 +35,7 @@ public:
 		{
 			if (_leftChild == NULL)
 			{
-				_leftChild = new KBTreeNode(Value);
+				_leftChild = make_unique<KBTreeNode<T>>(Value);
 				return;
 			}
 			else
@@ -42,7 +48,7 @@ public:
 		{
 			if (_rightChild == NULL)
 			{
-				_rightChild = new KBTreeNode(Value);
+				_rightChild = make_unique<KBTreeNode<T>>(Value);
 				return;
 			}
 			else
