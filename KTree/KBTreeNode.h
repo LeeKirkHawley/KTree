@@ -59,21 +59,5 @@ public:
 		}
 	}
 
-	void Remove()
-	{
-		if (_leftChild != NULL)
-		{
-			_leftChild->Remove();
-			_leftChild = NULL;
-		}
-
-		if (_rightChild != NULL)
-		{
-			_rightChild->Remove();
-			_rightChild = NULL;
-		}
-
-		delete this;
-	}
 };
 
