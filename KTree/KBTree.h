@@ -14,7 +14,7 @@ using namespace std;
 template<class T> class KBTree
 {
 private:
-	unique_ptr<KBTreeNode<T>>& FindNode(unique_ptr<KBTreeNode<T>>& Parent, T value)
+	shared_ptr<KBTreeNode<T>> FindNode(shared_ptr<KBTreeNode<T>>& Parent, T value)
 	{
 		if (Parent->_value == value)
 			return Parent;
@@ -24,20 +24,20 @@ private:
 			if (Parent->_leftChild != NULL)
 				return FindNode(Parent->_leftChild, value);
 			else
-				throw;
+				return nullptr;
 		}
 		else
 		{
 			if (Parent->_rightChild != NULL)
 				return FindNode(Parent->_rightChild, value);
 			else
-				throw;
+				return nullptr;
 		}
 	}
 
 
 public:
-	unique_ptr<KBTreeNode<T>> _root;
+	shared_ptr<KBTreeNode<T>> _root;
 
 	KBTree<T>()
 	{
@@ -59,16 +59,16 @@ public:
 		}
 	}
 	
-	unique_ptr<KBTreeNode<T>>& FindNode(T value)
+	shared_ptr<KBTreeNode<T>> FindNode(T value)
 	{
 		return FindNode(_root, value);
 	}
 
-	void RemoveNode(unique_ptr<KBTreeNode<T>>& Parent, T value)
+	void RemoveNode(shared_ptr<KBTreeNode<T>> Parent, T value)
 	{
 		if (Parent->_leftChild->_value == value)
 		{
-			unique_ptr<KBTreeNode<T>>& NodeToDelete = Parent->_leftChild;
+			shared_ptr<KBTreeNode<T>>& NodeToDelete = Parent->_leftChild;
 			if (NodeToDelete->_leftChild == nullptr && NodeToDelete->_rightChild == nullptr)  // it's a leaf
 			{
 				Parent->_leftChild = nullptr;
@@ -79,7 +79,7 @@ public:
 
 		if (Parent->_rightChild->_value == value)
 		{
-			unique_ptr<KBTreeNode<T>>& NodeToDelete = Parent->_rightChild;
+			shared_ptr<KBTreeNode<T>>& NodeToDelete = Parent->_rightChild;
 			if (NodeToDelete->_leftChild == nullptr && NodeToDelete->_rightChild == nullptr)  // it's a leaf
 			{
 				Parent->_rightChild = nullptr;
@@ -122,7 +122,7 @@ public:
 		return Levels;
 	}
 
-		void BuildLevelString(vector<string>& Levels, unique_ptr<KBTreeNode<T>>& Parent, int Level)
+		void BuildLevelString(vector<string>& Levels, shared_ptr<KBTreeNode<T>>& Parent, int Level)
 	{
 		assert(Level >= 0);
 

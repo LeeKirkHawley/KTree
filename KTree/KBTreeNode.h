@@ -12,8 +12,8 @@ private:
 
 public:
 	T _value;
-	unique_ptr<KBTreeNode<T>> _leftChild;
-	unique_ptr<KBTreeNode<T>> _rightChild;
+	shared_ptr<KBTreeNode<T>> _leftChild;
+	shared_ptr<KBTreeNode<T>> _rightChild;
 
 	KBTreeNode<T>(T value)
 	{
