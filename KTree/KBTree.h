@@ -64,6 +64,7 @@ public:
 		return FindNode(_root, value);
 	}
 
+	// WRONG! doesn't work if node is tree root
 	void RemoveNode(shared_ptr<KBTreeNode<T>> Parent, T value)
 	{
 		if (Parent->_leftChild->_value == value)
@@ -72,7 +73,7 @@ public:
 			if (NodeToDelete->_leftChild == nullptr && NodeToDelete->_rightChild == nullptr)  // it's a leaf
 			{
 				Parent->_leftChild = nullptr;
-				NodeToDelete->reset(nullptr);
+				//NodeToDelete->reset(nullptr);
 			}
 			return;
 		}
@@ -83,26 +84,10 @@ public:
 			if (NodeToDelete->_leftChild == nullptr && NodeToDelete->_rightChild == nullptr)  // it's a leaf
 			{
 				Parent->_rightChild = nullptr;
-				NodeToDelete->reset();
+				//NodeToDelete->reset();
 			}
 			return;
 		}
-
-		//if (Parent->_value > value)
-		//{
-		//	if (Parent->_leftChild != NULL)
-		//		return FindNode(Parent->_leftChild, value);
-		//	else
-		//		throw;
-		//}
-		//else
-		//{
-		//	if (Parent->_rightChild != NULL)
-		//		return FindNode(Parent->_rightChild, value);
-		//	else
-		//		throw;
-		//}
-
 	}
 
 	void RemoveNode(T value)

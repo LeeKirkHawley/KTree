@@ -1,0 +1,1 @@
+Removing a node if it's the root node fails
