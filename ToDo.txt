@@ -1,1 +1,3 @@
-Removing a node if it's the root node fails
+- Removing a node if it's the root node fails
+- Put btree code in a dll
+- sort????

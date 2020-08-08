@@ -23,7 +23,7 @@ namespace UnitTests
 		TEST_METHOD(Removed_Node_Should_Not_Be_Found)
 		{
 			KBTree<std::string> Tree;
-			Tree.Add("none");  // WRONG - first added node is root!!
+			//Tree.Add("none");  // WRONG - first added node is root!!
 			Tree.Add("les paul");
 
 			Tree.RemoveNode("les paul");

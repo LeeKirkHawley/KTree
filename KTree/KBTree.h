@@ -64,7 +64,7 @@ public:
 		return FindNode(_root, value);
 	}
 
-	// WRONG! doesn't work if node is tree root
+	// Needs a lot of work
 	void RemoveNode(shared_ptr<KBTreeNode<T>> Parent, T value)
 	{
 		if (Parent->_leftChild->_value == value)
@@ -92,8 +92,8 @@ public:
 
 	void RemoveNode(T value)
 	{
-		if (_root->_value == value)   // don't know parent, might be root
-			throw;
+		//if (_root->_value == value)   // don't know parent, might be root
+		//	throw;
 
 		RemoveNode(_root, value);
 	}
