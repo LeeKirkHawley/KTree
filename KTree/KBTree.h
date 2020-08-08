@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <assert.h>
+//#include <cstddef>
 
 using namespace std;
 
@@ -71,7 +72,7 @@ public:
 			if (NodeToDelete->_leftChild == nullptr && NodeToDelete->_rightChild == nullptr)  // it's a leaf
 			{
 				Parent->_leftChild = nullptr;
-				NodeToDelete->reset(nulltpr);
+				NodeToDelete->reset(nullptr);
 			}
 			return;
 		}
